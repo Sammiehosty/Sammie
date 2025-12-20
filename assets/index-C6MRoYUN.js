@@ -14211,7 +14211,7 @@ const hv = () => {
 function mv() {
     return _.useEffect( () => {
        const timer = setTimeout(() => {
-            window.location.href = '/pi';
+            window.location.href = '/home.html';
         }, 5000);
     }
     , []),
